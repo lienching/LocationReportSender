@@ -2,8 +2,11 @@ package coding.lien.charles.locationreportsender;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +27,12 @@ import coding.lien.charles.locationreportsender.util.JSONSender;
 import coding.lien.charles.locationreportsender.util.LocationManager;
 import coding.lien.charles.locationreportsender.util.MessageWrapper;
 
-public class MainActivity extends Activity implements
+/**
+ * Author: lienching
+ * Description: This class is MainActivity
+ */
+
+public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, Serializable {
 
     private GoogleApiClient mGoogleApiClient;
@@ -87,7 +95,7 @@ public class MainActivity extends Activity implements
     protected void onStart() {
         mGoogleApiClient.connect();
         super.onStart();
-
+        getLocationPermission();
 
 
     } // onStart()
@@ -98,7 +106,19 @@ public class MainActivity extends Activity implements
     } // onStop()
 
 
+    protected void getLocationPermission() {
+        int permissionCheck = ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_FINE_LOCATION");
 
+        if ( permissionCheck != PackageManager.PERMISSION_GRANTED ) {
+            if ( ActivityCompat.shouldShowRequestPermissionRationale(this,"android.permission.ACCESS_FINE_LOCATION") ) {
+
+            } // if
+            else {
+                ActivityCompat.requestPermissions(this,
+                        new String[] {"android.permission.ACCESS_FINE_LOCATION"}, 1);
+            } // else
+        } // if
+    } // getLocationPermission()
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -106,31 +126,27 @@ public class MainActivity extends Activity implements
         Log.d("onActivityResult()", Integer.toString(resultCode));
 
         //final LocationSettingsStates states = LocationSettingsStates.fromIntent(data);
-        switch (requestCode)
-        {
-            case Constant.REQUEST_CHECK_SETTINGS:
-                switch (resultCode)
-                {
-                    case Activity.RESULT_OK:
-                    {
+        switch (requestCode) {
+            case Constant.REQUEST_CHECK_SETTINGS: {
+                switch (resultCode) {
+                    case Activity.RESULT_OK: {
                         // All required changes were successfully made
-                        MessageWrapper.SendMessage(this,"Location enabled by user!");
+                        MessageWrapper.SendMessage(this, "Location enabled by user!");
                         break;
-                    }
-                    case Activity.RESULT_CANCELED:
-                    {
+                    } // case Activity.RESULT_OK
+                    case Activity.RESULT_CANCELED: {
                         // The user was asked to change settings, but chose not to
-                        MessageWrapper.SendMessage(this,"Location not enabled, user cancelled.");
+                        MessageWrapper.SendMessage(this, "Location not enabled, user cancelled.");
                         break;
-                    }
-                    default:
-                    {
+                    } // case Activity.RESULT_CANCELED
+                    default: {
                         break;
-                    }
-                }
+                    } // default
+                } // switch
                 break;
-        }
-    }
+            } // case Constant.REQUEST_CHECK_SETTINGS
+        } // switch
+    } // onActivityResult( int, int, Intent )
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {

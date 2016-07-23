@@ -10,11 +10,11 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 
 /**
- * Created by lienching on 6/21/16.
+ * Author: lienching
+ * Description: This class handle JSON building process.
  */
 public class JSONBuilder {
 

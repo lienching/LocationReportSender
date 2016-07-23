@@ -1,7 +1,6 @@
 package coding.lien.charles.locationreportsender.background;
 
 import android.app.IntentService;
-import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.os.SystemClock;
@@ -9,21 +8,20 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
-import coding.lien.charles.locationreportsender.listener.StopTrackListener;
-import coding.lien.charles.locationreportsender.util.EnvironmentCheck;
 import coding.lien.charles.locationreportsender.util.InformationHolder;
 import coding.lien.charles.locationreportsender.util.JSONBuilder;
 import coding.lien.charles.locationreportsender.util.JSONSender;
 import coding.lien.charles.locationreportsender.util.LocationManager;
-import coding.lien.charles.locationreportsender.util.MessageWrapper;
 
 /**
- * Created by lienching on 6/21/16.
+ *
+ * @Author: lienching
+ * @Description: This class is a Service and it will handle thing about tracking.
+ *
  */
 public class TrackingService extends IntentService {
 
     private LocationManager locationManager;
-    // private SendingThread thread;
     private JSONBuilder builder;
     private JSONSender sender;
 
@@ -36,16 +34,15 @@ public class TrackingService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        // this.usr_context = (Context) passer.getObject();
         this.locationManager = LocationManager.getInstance();
         if ( locationManager != null )
             locationManager.StartUpdate();
 
         Log.d("TrackingService","Service Start");
-
+        Location now;
         while( InformationHolder.getIsTracking() ) {
             try {
-                Location now = locationManager.getUserLocation();
+                now = locationManager.getUserLocation();
                 if ( now == null ) {
                     Log.d("TrackingSerivce", "No Location");
                     SystemClock.sleep(5*1000);
@@ -59,14 +56,10 @@ public class TrackingService extends IntentService {
                 Log.e("SendingThread", e.toString());
                 Thread.currentThread().interrupt();
             } // catch
-        }
+        } // while
 
         Log.d("TrackingService","Service End");
-        /*
-        thread = new SendingThread();
-        thread.run();
-        StopTrackListener.setThread( thread );
-        */
+
     } // onHandleIntent( Intent )
 
     @Override
@@ -74,5 +67,5 @@ public class TrackingService extends IntentService {
         super.onDestroy();
         locationManager.stopLocationUpdates();
 
-    }
+    } // onDestroy()
 } // class TrackingService

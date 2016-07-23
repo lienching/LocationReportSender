@@ -13,7 +13,8 @@ import coding.lien.charles.locationreportsender.util.InformationHolder;
 import coding.lien.charles.locationreportsender.util.MessageWrapper;
 
 /**
- * Created by lienching on 6/22/16.
+ * Author: lienching
+ * Description: This class had the right to stop tracking service.
  */
 public class StopTrackListener implements View.OnClickListener {
 
@@ -25,7 +26,6 @@ public class StopTrackListener implements View.OnClickListener {
     private EditText status_ET;
     private EditText intreval_ET;
     private Button start_BTN;
-    private static Thread currentThread;
 
     public StopTrackListener( Activity activity, EditText server,
                              EditText group, EditText member, EditText status, EditText intreval, Button startbtn) {
@@ -36,7 +36,7 @@ public class StopTrackListener implements View.OnClickListener {
         this.status_ET = status;
         this.intreval_ET = intreval;
         this.start_BTN = startbtn;
-    } // StopTrackListener( Intent, Activity )
+    } // Constructor StopTrackListener( Intent, Activity )
 
     @Override
     public void onClick(View v) {
@@ -44,12 +44,6 @@ public class StopTrackListener implements View.OnClickListener {
         Log.i("StopTrackListener", "Service Stopping");
         TurnonEditable();
         if ( serviceIntent == null ) return;
-        /*
-        currentThread.interrupt();
-        if ( !currentThread.isInterrupted() ) {
-            currentThread.interrupt();
-        }
-        */
         InformationHolder.stopIsTracking();
         this.myActivity.stopService(serviceIntent);
         Log.i("StopTrackListener", "Service Stopped!");
@@ -63,9 +57,6 @@ public class StopTrackListener implements View.OnClickListener {
         this.memberid_ET.setInputType(InputType.TYPE_CLASS_TEXT);
         this.intreval_ET.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED);
         start_BTN.setClickable(true);
-    }
+    } // TurnonEditable
 
-    public static void setThread( Thread thread) {
-        currentThread = thread;
-    }
-} // StopTrackListener
+} // class StopTrackListener

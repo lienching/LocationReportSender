@@ -9,5 +9,6 @@
     <string name="StopLocating">Stop Tracking</string>
     <string name="NetworkError">No Network connection, Please check network settings</string>
     <string name="LocationError">No Location services, Please check location settings</string>
+    <string name="SiteNoFindError">404 No Found. Please check your URL</string>
 
 </resources>

@@ -10,7 +10,8 @@ import java.io.Serializable;
 import coding.lien.charles.locationreportsender.R;
 
 /**
- * Created by lienching on 6/21/16.
+ * Author: lienching
+ * Description: This class is use to check do user had all requirement for start tracking service.
  */
 public class EnvironmentCheck implements Serializable {
 
@@ -23,7 +24,7 @@ public class EnvironmentCheck implements Serializable {
     private EnvironmentCheck( Context context, GoogleApiClient client, LocationManager lm  ) {
         this.user_context = context;
         this.user_client = client;
-        this.locationManager = lm;
+        this.locationManager = LocationManager.getInstance();
     } // Constructor EnviromentCheck( Context )
 
     public static void initEnvironmentCheck(Context context, GoogleApiClient client, LocationManager lm) {
@@ -57,4 +58,4 @@ public class EnvironmentCheck implements Serializable {
     } // CheckInternetStatus()
 
 
-} // Class EnvironmentCheck
+} // class EnvironmentCheck

@@ -12,7 +12,8 @@ import coding.lien.charles.locationreportsender.util.InformationHolder;
 import coding.lien.charles.locationreportsender.util.MessageWrapper;
 
 /**
- * Created by lienching on 6/22/16.
+ * Author: lienching
+ * Description: This class had the right to starting tracking service.
  */
 public class StartTrackListener implements View.OnClickListener {
 
@@ -67,6 +68,6 @@ public class StartTrackListener implements View.OnClickListener {
         this.memberid_ET.setInputType(0);
         this.intreval_ET.setInputType(0);
         this.stop_BTN.setClickable( true );
-    }
+    } // TurnoffEditable
 
 } // class StartTrackListener

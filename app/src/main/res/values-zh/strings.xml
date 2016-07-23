@@ -10,6 +10,7 @@
     <string name="StopLocating">停止紀錄</string>
     <string name="NetworkError">沒有可使用網路，請檢查網路設定</string>
     <string name="LocationError">沒有可使用定位服務，請檢查定位設定</string>
+    <string name="SiteNoFindError">404 No Found. 請檢查網址是否有誤</string>
 
 
 </resources>
