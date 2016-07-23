@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SimpleLocationSender</string>
+    <string name="target_address">Server</string>
+    <string name="party_id">Party ID</string>
+    <string name="member_id">Member ID</string>
+    <string name="device_status">Device Status</string>
+    <string name="interval_time">Interval(sec/time)</string>
+    <string name="StartLocating">Start Tracking</string>
+    <string name="StopLocating">Stop Tracking</string>
+    <string name="NetworkError">No Network connection, Please check network settings</string>
+    <string name="LocationError">No Location services, Please check location settings</string>
+
+</resources>

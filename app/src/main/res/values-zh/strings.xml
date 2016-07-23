@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">簡易位置回傳系統</string>
+    <string name="target_address">伺服器位置</string>
+    <string name="party_id">隊伍名稱</string>
+    <string name="member_id">成員編號</string>
+    <string name="device_status">裝置狀態</string>
+    <string name="interval_time">發送時間(秒/次)</string>
+    <string name="StartLocating">開始紀錄</string>
+    <string name="StopLocating">停止紀錄</string>
+    <string name="NetworkError">沒有可使用網路，請檢查網路設定</string>
+    <string name="LocationError">沒有可使用定位服務，請檢查定位設定</string>
+
+
+</resources>
