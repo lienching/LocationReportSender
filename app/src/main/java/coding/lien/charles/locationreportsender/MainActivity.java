@@ -32,7 +32,7 @@ import coding.lien.charles.locationreportsender.util.MessageWrapper;
  * Description: This class is MainActivity
  */
 
-public class MainActivity extends AppCompatActivity implements
+public class MainActivity extends Activity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, Serializable {
 
     private GoogleApiClient mGoogleApiClient;
