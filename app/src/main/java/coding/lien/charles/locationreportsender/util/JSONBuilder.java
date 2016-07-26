@@ -29,7 +29,7 @@ public class JSONBuilder {
         this.s_member = memberid;
         this.s_status = status;
         this.s_azimuth = azimuth;
-
+        InitJson();
     } // Constructor JSONBuilder
 
     private void InitJson() {
@@ -37,7 +37,7 @@ public class JSONBuilder {
         tmp.put("group_id", s_group );
         tmp.put("user_id", s_member );
         tmp.put("status", s_status );
-        tmp.put("Azimuth", s_azimuth );
+        // tmp.put("azimuth", s_azimuth );
         json_properties = new JSONObject(tmp);
     } // InitJson()
 
@@ -48,7 +48,6 @@ public class JSONBuilder {
             Feature feature = new Feature(nowpoint);
             feature.setProperties(json_properties);
             result = feature.toJSON();
-
             return result;
         } // try
         catch ( Exception e ) {

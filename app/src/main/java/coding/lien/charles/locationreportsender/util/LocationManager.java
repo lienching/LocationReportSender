@@ -77,6 +77,9 @@ public class LocationManager implements LocationListener, Serializable {
 
     protected void startLocationUpdates() {
         try {
+            if ( !user_client.isConnected() ) {
+                user_client.connect();
+            }
             LocationServices.FusedLocationApi.requestLocationUpdates(
                     user_client, locationRequest, this);
             Log.d("LocationManager", "Start Location Update");
@@ -88,6 +91,9 @@ public class LocationManager implements LocationListener, Serializable {
 
     public void stopLocationUpdates() {
         try {
+            if ( !user_client.isConnected() ) {
+                user_client.connect();
+            }
             LocationServices.FusedLocationApi.removeLocationUpdates(
                     user_client, this);
             Log.d("LocationManager", "Stop Location Update");

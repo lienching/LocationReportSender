@@ -96,14 +96,17 @@ public class MainActivity extends Activity implements
         mGoogleApiClient.connect();
         super.onStart();
         getLocationPermission();
-
-
     } // onStart()
 
     protected void onStop() {
-        mGoogleApiClient.disconnect();
         super.onStop();
     } // onStop()
+
+    protected void onDestroy() {
+        mGoogleApiClient.disconnect();
+        super.onDestroy();
+    }
+
 
 
     protected void getLocationPermission() {

@@ -1,5 +1,7 @@
 package coding.lien.charles.locationreportsender.util;
 
+import android.util.Log;
+
 /**
  * Author: lienching
  * Description: This class hold information that we need to send to the server.
@@ -13,12 +15,22 @@ public class InformationHolder {
     private static boolean istracking;
 
     public static void setAll( String serverip, String partyid, String memberid, String devicesstatus, String intervaltime) {
+        if ( serverip.substring(0,8).compareTo("https://") != 0 &&
+                serverip.substring(0,7).compareTo("http://") != 0 ) {
+            serverip = "http://" + serverip;
+        } // if
         InformationHolder.serverip =  serverip;
         InformationHolder.partyid = partyid;
         InformationHolder.memberid = memberid;
         InformationHolder.devicesstatus = devicesstatus;
         InformationHolder.intervaltime = intervaltime;
         InformationHolder.istracking = true;
+        Log.d("InformationHolder", InformationHolder.serverip);
+        Log.d("InformationHolder", InformationHolder.partyid);
+        Log.d("InformationHolder", InformationHolder.memberid);
+        Log.d("InformationHolder", InformationHolder.devicesstatus);
+        Log.d("InformationHolder", InformationHolder.intervaltime);
+
     } // setAll( String, String, String, String, String )
 
     public static void setServerip(String serverip) {
@@ -46,27 +58,24 @@ public class InformationHolder {
     } // stopIsTracking()
 
     public static String getServerip() {
-        if ( serverip.substring(0,7).compareTo("http://") != 0 ) {
-            serverip = "http://" + serverip;
-        } // if
-        return serverip;
+        return InformationHolder.serverip;
     } // getServerip()
 
     public static String getPartyid() {
-        return partyid;
+        return InformationHolder.partyid;
     } // getPartyid()
 
     public static String getMemberid() {
-        return memberid;
+        return InformationHolder.memberid;
     } // getMemberid()
 
     public static String getDevicesstatus() {
-        return devicesstatus;
+        return InformationHolder.devicesstatus;
     } // getDevicesstatus()
 
     public static String getIntervaltime() {
-        return intervaltime;
+        return InformationHolder.intervaltime;
     } // getIntervaltime()
 
-    public static boolean getIsTracking() { return istracking; } // getIsTracking()
+    public static boolean getIsTracking() { return InformationHolder.istracking; } // getIsTracking()
 } // class InformationHolder

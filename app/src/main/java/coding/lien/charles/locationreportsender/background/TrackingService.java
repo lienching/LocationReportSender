@@ -29,6 +29,7 @@ public class TrackingService extends IntentService {
 
         super("Tracking Service");
         builder = new JSONBuilder(InformationHolder.getPartyid(), InformationHolder.getMemberid(), InformationHolder.getDevicesstatus(), "240");
+
         this.sender = JSONSender.getSender();
     } // Constructor TrackService()
 
@@ -53,8 +54,7 @@ public class TrackingService extends IntentService {
                 sender.SendJson(json, InformationHolder.getServerip());
                 SystemClock.sleep(Long.parseLong(InformationHolder.getIntervaltime()) * 1000);
             } catch (Exception e) {
-                Log.e("SendingThread", e.toString());
-                Thread.currentThread().interrupt();
+                Log.e("TrackingService", e.toString());
             } // catch
         } // while
 
