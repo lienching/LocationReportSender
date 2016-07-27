@@ -21,6 +21,8 @@ import coding.lien.charles.locationreportsender.util.LocationManager;
  */
 public class TrackingService extends IntentService {
 
+    private final String TAG = "TrackingService";
+
     private LocationManager locationManager;
     private JSONBuilder builder;
     private JSONSender sender;
@@ -29,7 +31,6 @@ public class TrackingService extends IntentService {
 
         super("Tracking Service");
         builder = new JSONBuilder(InformationHolder.getPartyid(), InformationHolder.getMemberid(), InformationHolder.getDevicesstatus(), "240");
-
         this.sender = JSONSender.getSender();
     } // Constructor TrackService()
 
@@ -39,13 +40,13 @@ public class TrackingService extends IntentService {
         if ( locationManager != null )
             locationManager.StartUpdate();
 
-        Log.d("TrackingService","Service Start");
+        Log.d(TAG,"Service Start");
         Location now;
         while( InformationHolder.getIsTracking() ) {
             try {
                 now = locationManager.getUserLocation();
                 if ( now == null ) {
-                    Log.d("TrackingSerivce", "No Location");
+                    Log.d(TAG, "No Location");
                     SystemClock.sleep(5*1000);
                     continue;
                 } // if
@@ -54,7 +55,7 @@ public class TrackingService extends IntentService {
                 sender.SendJson(json, InformationHolder.getServerip());
                 SystemClock.sleep(Long.parseLong(InformationHolder.getIntervaltime()) * 1000);
             } catch (Exception e) {
-                Log.e("TrackingService", e.toString());
+                Log.e(TAG, e.toString());
             } // catch
         } // while
 

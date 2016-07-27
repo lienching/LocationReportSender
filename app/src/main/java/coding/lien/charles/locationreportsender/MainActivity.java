@@ -1,13 +1,11 @@
 package coding.lien.charles.locationreportsender;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -21,7 +19,6 @@ import java.io.Serializable;
 
 import coding.lien.charles.locationreportsender.listener.StartTrackListener;
 import coding.lien.charles.locationreportsender.listener.StopTrackListener;
-import coding.lien.charles.locationreportsender.util.Constant;
 import coding.lien.charles.locationreportsender.util.EnvironmentCheck;
 import coding.lien.charles.locationreportsender.util.JSONSender;
 import coding.lien.charles.locationreportsender.util.LocationManager;
@@ -34,6 +31,8 @@ import coding.lien.charles.locationreportsender.util.MessageWrapper;
 
 public class MainActivity extends Activity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, Serializable {
+
+    private final String TAG = "MainActivity";
 
     private GoogleApiClient mGoogleApiClient;
     private EditText serveraddress_ET;
@@ -53,15 +52,8 @@ public class MainActivity extends Activity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Setup Goolge API Client
-        if ( mGoogleApiClient == null ) {
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
-                    .addConnectionCallbacks(this)
-                    .addOnConnectionFailedListener(this)
-                    .addApi(LocationServices.API)
-                    .build();
-        } // if
 
+        buildGoogleApiClient();
 
         LocationManager.initLocationManager(this, mGoogleApiClient);
         locationManager = LocationManager.getInstance();
@@ -90,6 +82,7 @@ public class MainActivity extends Activity implements
         JSONSender.CreateSender(this);
 
 
+
     } // onCreate( Bundle )
 
     protected void onStart() {
@@ -103,7 +96,10 @@ public class MainActivity extends Activity implements
     } // onStop()
 
     protected void onDestroy() {
-        mGoogleApiClient.disconnect();
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+
         super.onDestroy();
     }
 
@@ -123,47 +119,29 @@ public class MainActivity extends Activity implements
         } // if
     } // getLocationPermission()
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.d("onActivityResult()", Integer.toString(resultCode));
-
-        //final LocationSettingsStates states = LocationSettingsStates.fromIntent(data);
-        switch (requestCode) {
-            case Constant.REQUEST_CHECK_SETTINGS: {
-                switch (resultCode) {
-                    case Activity.RESULT_OK: {
-                        // All required changes were successfully made
-                        MessageWrapper.SendMessage(this, "Location enabled by user!");
-                        break;
-                    } // case Activity.RESULT_OK
-                    case Activity.RESULT_CANCELED: {
-                        // The user was asked to change settings, but chose not to
-                        MessageWrapper.SendMessage(this, "Location not enabled, user cancelled.");
-                        break;
-                    } // case Activity.RESULT_CANCELED
-                    default: {
-                        break;
-                    } // default
-                } // switch
-                break;
-            } // case Constant.REQUEST_CHECK_SETTINGS
-        } // switch
-    } // onActivityResult( int, int, Intent )
+    // Google official example
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+    } // buildGoogleApiClient
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
 
+        MessageWrapper.SendMessage(this,"ApiClient connect!");
     } // onConnected( Bundle )
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        mGoogleApiClient.connect();
     } // onConnectionSuspended( int )
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+        Log.i( TAG, "Connection failed: ConnectionResult.getErrorCode() = " + connectionResult.getErrorCode() );
     } // onConnectionFailed( ConnectionResult )
 
 
