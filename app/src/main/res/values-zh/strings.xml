@@ -11,6 +11,9 @@
     <string name="NetworkError">沒有可使用網路，請檢查網路設定</string>
     <string name="LocationError">沒有可使用定位服務，請檢查定位設定</string>
     <string name="SiteNoFindError">404 No Found. 請檢查網址是否有誤</string>
-
+    <string name="ServerAddressNotInput">請輸入伺服器位置</string>
+    <string name="PartyIDNotInput">請輸入隊伍名稱</string>
+    <string name="UserIDNotInput">請輸入成員編號</string>
+    <string name="IntervalNotInput">發送時間未定義，使用預設值( 5秒/次 )</string>
 
 </resources>

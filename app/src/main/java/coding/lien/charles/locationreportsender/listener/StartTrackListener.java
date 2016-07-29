@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import coding.lien.charles.locationreportsender.R;
 import coding.lien.charles.locationreportsender.background.TrackingService;
 import coding.lien.charles.locationreportsender.util.EnvironmentCheck;
 import coding.lien.charles.locationreportsender.util.InformationHolder;
@@ -49,6 +50,8 @@ public class StartTrackListener implements View.OnClickListener {
             return;
         } // if
 
+        if ( !AllFieldEntered() ) return;
+
         InformationHolder.setAll(this.serveraddress_ET.getText().toString(), this.groupid_ET.getText().toString(),
                                  this.memberid_ET.getText().toString(), this.status_ET.getText().toString(), this.intreval_ET.getText().toString());
         TurnoffEditable();
@@ -69,5 +72,28 @@ public class StartTrackListener implements View.OnClickListener {
         this.intreval_ET.setInputType(0);
         this.stop_BTN.setClickable( true );
     } // TurnoffEditable
+
+
+    private boolean AllFieldEntered() {
+
+        if ( this.serveraddress_ET.getText().length() == 0 ) {
+            MessageWrapper.SendMessage(this.myActivity, this.myActivity.getResources().getString(R.string.ServerAddressNotInput));
+            return false;
+        } // if
+        if ( this.groupid_ET.getText().length() == 0 ) {
+            MessageWrapper.SendMessage(this.myActivity, this.myActivity.getResources().getString(R.string.PartyIDNotInput));
+            return false;
+        } // if
+        if ( this.memberid_ET.getText().length() == 0 ) {
+            MessageWrapper.SendMessage(this.myActivity, this.myActivity.getResources().getString(R.string.UserIDNotInput));
+            return false;
+        } // if
+        if ( this.intreval_ET.getText().length() == 0 ) {
+            MessageWrapper.SendMessage(this.myActivity, this.myActivity.getResources().getString(R.string.IntervalNotInput));
+            this.intreval_ET.setText("5");
+        } // if
+
+        return true;
+    } // AllFieldEntered
 
 } // class StartTrackListener

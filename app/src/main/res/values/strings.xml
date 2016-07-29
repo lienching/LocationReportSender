@@ -10,5 +10,8 @@
     <string name="NetworkError">No Network connection, Please check network settings</string>
     <string name="LocationError">No Location services, Please check location settings</string>
     <string name="SiteNoFindError">404 No Found. Please check your URL</string>
-
+    <string name="ServerAddressNotInput">Please enter server address</string>
+    <string name="PartyIDNotInput">Please enter party ID</string>
+    <string name="UserIDNotInput">Please enter member ID</string>
+    <string name="IntervalNotInput">Interval Time not input, using default value( 5 sec per send)</string>
 </resources>

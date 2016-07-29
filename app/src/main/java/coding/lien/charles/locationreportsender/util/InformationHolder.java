@@ -15,10 +15,10 @@ public class InformationHolder {
     private static boolean istracking;
 
     public static void setAll( String serverip, String partyid, String memberid, String devicesstatus, String intervaltime) {
-        if ( serverip.substring(0,8).compareTo("https://") != 0 &&
-                serverip.substring(0,7).compareTo("http://") != 0 ) {
+        if ( !serverip.startsWith("http") ) {
             serverip = "http://" + serverip;
         } // if
+
         InformationHolder.serverip =  serverip;
         InformationHolder.partyid = partyid;
         InformationHolder.memberid = memberid;
