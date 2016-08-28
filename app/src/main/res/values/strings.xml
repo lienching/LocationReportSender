@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SimpleLocationSender</string>
+    <string name="app_name">Simple Location Sender</string>
     <string name="target_address">Server</string>
     <string name="party_id">Party ID</string>
     <string name="member_id">Member ID</string>

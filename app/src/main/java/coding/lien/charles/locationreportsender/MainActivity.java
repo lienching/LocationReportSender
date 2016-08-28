@@ -19,6 +19,7 @@ import java.io.Serializable;
 
 import coding.lien.charles.locationreportsender.listener.StartTrackListener;
 import coding.lien.charles.locationreportsender.listener.StopTrackListener;
+import coding.lien.charles.locationreportsender.util.CompassManager;
 import coding.lien.charles.locationreportsender.util.EnvironmentCheck;
 import coding.lien.charles.locationreportsender.util.JSONSender;
 import coding.lien.charles.locationreportsender.util.LocationManager;
@@ -46,6 +47,7 @@ public class MainActivity extends Activity implements
     private EnvironmentCheck checker;
     private StartTrackListener startTrackListener;
     private StopTrackListener stopTrackListener;
+    private CompassManager compassManager;
 
 
     @Override
@@ -81,7 +83,8 @@ public class MainActivity extends Activity implements
 
         JSONSender.CreateSender(this);
 
-
+        CompassManager.initManager(this);
+        compassManager = CompassManager.getInstance();
 
     } // onCreate( Bundle )
 
@@ -103,14 +106,24 @@ public class MainActivity extends Activity implements
         super.onDestroy();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        compassManager.SensorResume();
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        compassManager.SensorPause();
+    }
 
     protected void getLocationPermission() {
         int permissionCheck = ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_FINE_LOCATION");
 
         if ( permissionCheck != PackageManager.PERMISSION_GRANTED ) {
             if ( ActivityCompat.shouldShowRequestPermissionRationale(this,"android.permission.ACCESS_FINE_LOCATION") ) {
-
+                MessageWrapper.SendMessage(this,"Location Permission Granted!");
             } // if
             else {
                 ActivityCompat.requestPermissions(this,

@@ -8,6 +8,7 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
+import coding.lien.charles.locationreportsender.util.CompassManager;
 import coding.lien.charles.locationreportsender.util.InformationHolder;
 import coding.lien.charles.locationreportsender.util.JSONBuilder;
 import coding.lien.charles.locationreportsender.util.JSONSender;
@@ -15,8 +16,8 @@ import coding.lien.charles.locationreportsender.util.LocationManager;
 
 /**
  *
- * @Author: lienching
- * @Description: This class is a Service and it will handle thing about tracking.
+ * Author: lienching
+ * Description: This class is a Service and it will handle thing about tracking.
  *
  */
 public class TrackingService extends IntentService {
@@ -30,7 +31,7 @@ public class TrackingService extends IntentService {
     public TrackingService() {
 
         super("Tracking Service");
-        builder = new JSONBuilder(InformationHolder.getPartyid(), InformationHolder.getMemberid(), InformationHolder.getDevicesstatus(), "240");
+        builder = new JSONBuilder(InformationHolder.getPartyid(), InformationHolder.getMemberid(), InformationHolder.getDevicesstatus());
         this.sender = JSONSender.getSender();
     } // Constructor TrackService()
 
