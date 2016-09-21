@@ -44,7 +44,7 @@ public class StopTrackListener implements View.OnClickListener {
         Log.i("StopTrackListener", "Service Stopping");
         TurnonEditable();
         if ( serviceIntent == null ) return;
-        InformationHolder.stopIsTracking();
+        InformationHolder.isTracking = false;
         this.myActivity.stopService(serviceIntent);
         Log.i("StopTrackListener", "Service Stopped!");
         v.setClickable(false);

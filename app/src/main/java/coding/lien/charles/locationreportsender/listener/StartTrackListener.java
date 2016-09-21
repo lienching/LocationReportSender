@@ -2,6 +2,7 @@ package coding.lien.charles.locationreportsender.listener;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,8 @@ import coding.lien.charles.locationreportsender.background.TrackingService;
 import coding.lien.charles.locationreportsender.util.EnvironmentCheck;
 import coding.lien.charles.locationreportsender.util.InformationHolder;
 import coding.lien.charles.locationreportsender.util.MessageWrapper;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * Author: lienching
@@ -27,8 +30,9 @@ public class StartTrackListener implements View.OnClickListener {
     private EditText status_ET;
     private EditText intreval_ET;
     private Button stop_BTN;
+    private Realm realm;
 
-    public StartTrackListener(Activity activity, EnvironmentCheck check, EditText server,
+    public StartTrackListener(Activity activity, Realm mrealm,EnvironmentCheck check, EditText server,
                               EditText group, EditText member, EditText status, EditText intreval, Button stopbtn) {
         this.myActivity = activity;
         this.checker = check;
@@ -38,6 +42,10 @@ public class StartTrackListener implements View.OnClickListener {
         this.status_ET = status;
         this.intreval_ET = intreval;
         this.stop_BTN = stopbtn;
+
+
+
+        realm = mrealm;
     } // StartTrackListener
 
     @Override
@@ -52,10 +60,17 @@ public class StartTrackListener implements View.OnClickListener {
 
         if ( !AllFieldEntered() ) return;
 
-        InformationHolder.setAll(this.serveraddress_ET.getText().toString(), this.groupid_ET.getText().toString(),
+        InformationHolder holder = new InformationHolder();
+        holder.setAll(this.serveraddress_ET.getText().toString(), this.groupid_ET.getText().toString(),
                                  this.memberid_ET.getText().toString(), this.status_ET.getText().toString(), this.intreval_ET.getText().toString());
+        realm.beginTransaction();
+        realm.insert(holder);
+        Log.d("Realm", realm.getSchema().toString());
+        realm.commitTransaction();
+
         TurnoffEditable();
         serviceIntent = new Intent(myActivity, TrackingService.class);
+        serviceIntent.putExtra("holder", holder);
         myActivity.startService( serviceIntent );
         MessageWrapper.SendMessage(v.getContext(), "Start Tracking!");
         v.setClickable(false);

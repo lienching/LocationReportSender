@@ -31,7 +31,7 @@ public class TrackingService extends IntentService {
     public TrackingService() {
 
         super("Tracking Service");
-        builder = new JSONBuilder(InformationHolder.getPartyid(), InformationHolder.getMemberid(), InformationHolder.getDevicesstatus());
+
         this.sender = JSONSender.getSender();
     } // Constructor TrackService()
 
@@ -41,9 +41,11 @@ public class TrackingService extends IntentService {
         if ( locationManager != null )
             locationManager.StartUpdate();
 
+        InformationHolder holder = (InformationHolder) intent.getSerializableExtra("holder");
+        builder = new JSONBuilder(holder.getPartyid(), holder.getMemberid(), holder.getDevicesstatus());
         Log.d(TAG,"Service Start");
         Location now;
-        while( InformationHolder.getIsTracking() ) {
+        while( InformationHolder.isTracking ) {
             try {
                 now = locationManager.getUserLocation();
                 if ( now == null ) {
@@ -53,8 +55,8 @@ public class TrackingService extends IntentService {
                 } // if
 
                 JSONObject json = builder.BuildGeoJson(now.getLatitude(), now.getLongitude());
-                sender.SendJson(json, InformationHolder.getServerip());
-                SystemClock.sleep(Long.parseLong(InformationHolder.getIntervaltime()) * 1000);
+                sender.SendJson(json, holder.getServerip());
+                SystemClock.sleep(Long.parseLong(holder.getIntervaltime()) * 1000);
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
             } // catch

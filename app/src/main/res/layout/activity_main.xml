@@ -23,7 +23,7 @@
             android:text="@string/target_address"
             />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/serveraddress_editText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -34,7 +34,7 @@
             android:textSize="22sp"
             android:text="@string/party_id"
             />
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/partyid_editText"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
@@ -44,7 +44,7 @@
             android:textSize="22sp"
             android:text="@string/member_id"
             />
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/memberid_editText"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
@@ -55,7 +55,7 @@
             android:textSize="22sp"
             android:text="@string/device_status"
             />
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/devicestatus_editText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -70,7 +70,7 @@
             android:text="@string/interval_time"
 
             />
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/intervaltime_editText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
