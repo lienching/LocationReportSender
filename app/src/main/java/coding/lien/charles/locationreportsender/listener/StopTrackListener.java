@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-
 import coding.lien.charles.locationreportsender.util.InformationHolder;
 import coding.lien.charles.locationreportsender.util.MessageWrapper;
 

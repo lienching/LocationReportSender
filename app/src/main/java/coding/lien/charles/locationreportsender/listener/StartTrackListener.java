@@ -2,7 +2,6 @@ package coding.lien.charles.locationreportsender.listener;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +12,6 @@ import coding.lien.charles.locationreportsender.util.EnvironmentCheck;
 import coding.lien.charles.locationreportsender.util.InformationHolder;
 import coding.lien.charles.locationreportsender.util.MessageWrapper;
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 /**
  * Author: lienching

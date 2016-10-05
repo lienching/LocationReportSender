@@ -8,7 +8,6 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
-import coding.lien.charles.locationreportsender.util.CompassManager;
 import coding.lien.charles.locationreportsender.util.InformationHolder;
 import coding.lien.charles.locationreportsender.util.JSONBuilder;
 import coding.lien.charles.locationreportsender.util.JSONSender;

@@ -4,8 +4,6 @@ import android.util.Log;
 
 import java.io.Serializable;
 
-import io.realm.RealmObject;
-
 /**
  * Author: lienching
  * Description: This class hold information that we need to send to the server.

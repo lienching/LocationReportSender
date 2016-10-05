@@ -4,7 +4,9 @@ package coding.lien.charles.locationreportsender.util;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+
 import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.io.Serializable;
 
 import coding.lien.charles.locationreportsender.R;
