@@ -63,11 +63,6 @@ public class StartTrackListener implements View.OnClickListener {
         InformationHolder holder = new InformationHolder();
         holder.setAll(this.serveraddress_ET.getText().toString(), this.groupid_ET.getText().toString(),
                                  this.memberid_ET.getText().toString(), this.status_ET.getText().toString(), this.intreval_ET.getText().toString());
-        realm.beginTransaction();
-        realm.insert(holder);
-        Log.d("Realm", realm.getSchema().toString());
-        realm.commitTransaction();
-
         TurnoffEditable();
         serviceIntent = new Intent(myActivity, TrackingService.class);
         serviceIntent.putExtra("holder", holder);

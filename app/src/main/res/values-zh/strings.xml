@@ -15,5 +15,8 @@
     <string name="PartyIDNotInput">請輸入隊伍名稱</string>
     <string name="UserIDNotInput">請輸入成員編號</string>
     <string name="IntervalNotInput">發送時間未定義，使用預設值( 5秒/次 )</string>
-
+    <string name="SaveBookMark">儲存書籤</string>
+    <string name="IoEBookMark">匯入/匯出書籤</string>
+    <string name="Import">匯入</string>
+    <string name="Export">匯出</string>
 </resources>

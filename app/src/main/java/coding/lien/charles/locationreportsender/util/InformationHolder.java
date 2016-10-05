@@ -10,13 +10,28 @@ import io.realm.RealmObject;
  * Author: lienching
  * Description: This class hold information that we need to send to the server.
  */
-public class InformationHolder extends RealmObject implements Serializable{
+public class InformationHolder implements Serializable{
     private String serverip;
     private String partyid;
     private String memberid;
     private String devicesstatus;
     private String intervaltime;
     public static boolean isTracking;
+
+    public void setAll( String serverip, String partyid, String memberid) {
+        if ( !serverip.startsWith("http") ) {
+            serverip = "http://" + serverip;
+        } // if
+
+        this.serverip =  serverip;
+        this.partyid = partyid;
+        this.memberid = memberid;
+
+        Log.d("InformationHolder", this.serverip);
+        Log.d("InformationHolder", this.partyid);
+        Log.d("InformationHolder", this.memberid);
+
+    } // setAll( String, String, String, String, String )
 
     public void setAll( String serverip, String partyid, String memberid, String devicesstatus, String intervaltime) {
         if ( !serverip.startsWith("http") ) {

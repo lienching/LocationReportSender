@@ -14,4 +14,8 @@
     <string name="PartyIDNotInput">Please enter party ID</string>
     <string name="UserIDNotInput">Please enter member ID</string>
     <string name="IntervalNotInput">Interval Time not input, using default value( 5 sec per send)</string>
+    <string name="SaveBookMark">Save Bookmark</string>
+    <string name="IoEBookMark">Import/Export BookMark</string>
+    <string name="Import">Import</string>
+    <string name="Export">Export</string>
 </resources>

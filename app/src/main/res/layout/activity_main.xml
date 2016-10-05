@@ -76,19 +76,50 @@
             android:layout_height="50dp"
             android:inputType="numberSigned"
             />
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
             <Button
                 android:id="@+id/start_btn"
                 android:text="@string/StartLocating"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"/>
+
             <Button
                 android:id="@+id/stop_btn"
                 android:text="@string/StopLocating"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/savebk_btn"
+                android:text="@string/SaveBookMark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 />
+            <Button
+                android:id="@+id/iebk_btn"
+                android:text="@string/IoEBookMark"
+                android:textSize="6pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
 
 
     </LinearLayout>
