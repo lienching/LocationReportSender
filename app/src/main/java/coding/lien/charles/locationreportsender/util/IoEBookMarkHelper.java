@@ -21,7 +21,9 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 /**
- * Created by lienching on 9/28/16.
+ * Author: lienching
+ * Description: This class is the heart of import/export bookmark feature, all the import/export work
+ *              will be done here.
  */
 
 public class IoEBookMarkHelper {

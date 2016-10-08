@@ -5,7 +5,8 @@ import java.io.Serializable;
 import io.realm.RealmObject;
 
 /**
- * Created by lienching on 10/5/16.
+ * Author: lienching
+ * Description: This class is just a holder that hold info of bookmark
  */
 
 public class BookMarkHolder extends RealmObject implements Serializable {

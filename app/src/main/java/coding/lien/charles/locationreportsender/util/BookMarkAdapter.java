@@ -17,7 +17,8 @@ import java.util.HashSet;
 import io.realm.RealmResults;
 
 /**
- * Created by lienching on 9/20/16.
+ * Author: lienching
+ * Description: This class is the adapter which use in AutoCompleteTextView, and use to present bookmark
  */
 
 

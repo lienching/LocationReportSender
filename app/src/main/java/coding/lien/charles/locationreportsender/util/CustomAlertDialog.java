@@ -11,7 +11,8 @@ import coding.lien.charles.locationreportsender.R;
 
 
 /**
- * Created by lienching on 10/5/16.
+ * Author: lienching
+ * Description: This class is an custom alert dialog, is use to be the menu of import or export bookmark
  */
 
 public class CustomAlertDialog extends Dialog implements android.view.View.OnClickListener  {
